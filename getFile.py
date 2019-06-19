@@ -1,6 +1,8 @@
 import copy
-from Tkinter import *
-import tkFileDialog, tkMessageBox, tkColorChooser
+from tkinter import *
+import tkinter.filedialog
+import tkinter.messagebox
+import tkinter.colorchooser
 import xml.etree.ElementTree as ET
 import random
 import time
@@ -27,7 +29,7 @@ def parseFile(filename):
     previewTilesExist = False
     tileDataExists = False
     CommandsExists = False
-    #check if the xml attributes are found
+   #check if the xml attributes are found
     if tree.find("GlueFunction") != None:
         glueFuncExists = True
 
@@ -47,7 +49,6 @@ def parseFile(filename):
     #data set that will be passed back to tumblegui
     tile_set_data = {"glueFunc": {}, "prevTiles": [], "tileData": []}
 
-    
     if boardSizeExists:
         rows = treeroot[0].attrib["height"]
         columns = treeroot[0].attrib["width"]
@@ -170,10 +171,10 @@ def parseFile(filename):
     commands = []
     if CommandsExists:
         listOfCommands = treeroot[4]
-        print listOfCommands
+        print (listOfCommands)
         for c in listOfCommands:
-            print c
-            print "NAME: ",c.attrib["name"],"  FILENAME: ",c.attrib["filename"]
+            print (c)
+            print ("NAME: ",c.attrib["name"],"  FILENAME: ",c.attrib["filename"])
             commands.append((c.attrib["name"], c.attrib["filename"]))
 
     data = [board, glueFunc, prevTileList, commands]
